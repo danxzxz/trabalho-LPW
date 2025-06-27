@@ -44,4 +44,5 @@ $stmt = $conn->prepare($sql);
 $stmt->execute([$nome, $autor, $ano, $genero, $CI, $sinopse, $link]);
 
 
-
+header("Location: listar.php");
+exit;

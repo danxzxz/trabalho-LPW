@@ -1,3 +1,16 @@
+<?php 
+require_once('util/conexao.php');
+
+try {
+    $con = Conexao::getConexao(); // Corrigido aqui
+    $stmt = $con->query("SELECT * FROM livros");
+    $livros = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    echo "Erro ao buscar livros: " . $e->getMessage();
+    $livros = []; // Garante que $livros esteja definido
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,11 +18,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/estilo_form.css">
     <title>Cadastro de Livro</title>
+
+
 </head>
 
 <body>
     <h2>Cadastro de Livro</h2> 
-    <form method="POST" action="listar.php">
+    <form method="POST" action="card.php">
         <input name="nome" placeholder="Título do Livro" />
         <br>
         <input name="autor" placeholder="Autor" />
@@ -46,40 +61,49 @@
         <option value="adulto">Adulto (18+)</option>
     </select>
     <br>
-        <textarea name="sinopse" placeholder="Sinopse" rows="3" cols="29" style="margin: 10px 0; padding: 10px; border-radius: 5px;"></textarea>
+        <textarea name="sinopse" placeholder="Sinopse" rows="3" cols="29"></textarea>
         <br>
         <input name="link" placeholder="URL da capa do livro" />
         <br><br>
-        <button type="submit">Cadastrar</button>
+        <button class="cadastrar" type="submit">Cadastrar</button>
     </form>
 
-    <table border="1" style="width: 100%; text-align: center; color: white; border-collapse: collapse;">
-    <tr style="background-color: #333;">
-        <th>ID</th>
-        <th>Título</th>
-        <th>Gênero</th>
-        <th>Ano</th>
-        <th>Autor</th>
-        <th>Classificação</th>
-        <th>Excluir</th>
-    </tr>
+        <a href="listar.php"><button type="button" style="margin-top: 15px;">Ver cards</button></a>
 
-    <?php foreach ($livros as $livro): ?>
-        <tr>
-            <td><?= $livro['id'] ?></td>
-            <td><?= htmlspecialchars($livro['nome']) ?></td>
-            <td><?= htmlspecialchars($livro['genero']) ?></td>
-            <td><?= $livro['ano'] ?></td>
-            <td><?= htmlspecialchars($livro['autor']) ?></td>
-            <td><?= htmlspecialchars($livro['classificacao']) ?></td>
-            <td>
-                <a href="excluir.php?id=<?= $livro['id'] ?>" 
-                   onclick="return confirm('Tem certeza que deseja excluir?')"
-                   style="color: red;">Excluir</a>
-            </td>   
-        </tr>
-    <?php endforeach; ?>
-</table>
+    <!-- Tabela de livros (dentro do container ocultável) -->
+    <div id="tabelaLivros" style="margin-top: 20px;">
+        <table border="1" style="width: 100%; text-align: center; color: white; border-collapse: collapse;">
+            <tr style="background-color: #333;">
+                <th>ID</th>
+                <th>Título</th>
+                <th>Gênero</th>
+                <th>Ano</th>
+                <th>Autor</th>
+                <th>Classificação</th>
+                <th>Excluir</th>
+            </tr>
+
+            <?php foreach ($livros as $livro): ?>
+                <tr>
+                    <td><?= $livro['id'] ?></td>
+                    <td><?= htmlspecialchars($livro['nome']) ?></td>
+                    <td><?= htmlspecialchars($livro['genero']) ?></td>
+                    <td><?= htmlspecialchars($livro['ano']) ?></td>
+                    <td><?= htmlspecialchars($livro['autor']) ?></td>
+                    <td><?= htmlspecialchars($livro['classificacao']) ?></td>
+                    <td>
+                        <a href="excluir.php?id=<?= $livro['id'] ?>" 
+                           onclick="return confirm('Tem certeza que deseja excluir?')"
+                           style="color: red;">Excluir</a>
+                    </td>   
+                </tr>
+            <?php endforeach; ?>
+        </table>
+
+    </div>
 
 </body>
 </html>
+
+
+
