@@ -7,7 +7,7 @@ CREATE TABLE  livros (
     nome VARCHAR(255) NOT NULL,
     autor VARCHAR(255) NOT NULL,
     ano INT NOT NULL,
-    genero VARCHAR(1) NOT NULL,
+    genero VARCHAR(50) NOT NULL,
     classificacao VARCHAR(50) NOT NULL,
     sinopse TEXT NOT NULL,
     link TEXT NOT NULL,
@@ -15,4 +15,3 @@ CREATE TABLE  livros (
 );
 
 
-ALTER TABLE livros MODIFY genero VARCHAR(50) NOT NULL;

@@ -1,5 +1,15 @@
 body {
-    background-color: black;
+    background-color: #000;
+    background-image: url('../img/livros.jpg'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-blend-mode: multiply;
+    background-color: rgba(0, 0, 0, 0.7);
+
+
+
     color: white; 
     display: flex;
     flex-direction: column;
@@ -63,3 +73,80 @@ button:hover {
     transition: 0.3s ease;
 }
 
+#tabelaLivros table {
+    width: 100%;
+    border-collapse: collapse; 
+    margin-top: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6); 
+    background-color: #1a1a1a; 
+    border-radius: 10px; 
+    overflow: hidden; 
+}
+
+#tabelaLivros th,
+#tabelaLivros td {
+    padding: 12px 15px;
+    text-align: left; 
+    border-bottom: 1px solid #333; 
+}
+
+#tabelaLivros th {
+    background-color: #333; 
+    color: #fff; 
+    font-weight: bold;
+    text-transform: uppercase; 
+    letter-spacing: 0.5px;
+}
+
+#tabelaLivros tr:last-child td {
+    border-bottom: none; 
+}
+
+#tabelaLivros tr:nth-child(even) {
+    background-color: #121212; 
+}
+
+#tabelaLivros tr:hover {
+    background-color: #2a2a2a; 
+    transition: background-color 0.3s ease;
+}
+
+#tabelaLivros td a { 
+    color: #ff6b6b; 
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+#tabelaLivros td a:hover {
+    color: #ff3b3b; /* vermelho mais forte no hover */
+    text-decoration: underline;
+}
+
+
+div.erros {
+    background-color: rgba(255, 0, 0, 0.2);
+    border-left: 5px solid red;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    color: white;
+}
+
+div.sucesso {
+    background-color: rgba(0, 255, 0, 0.2);
+    border-left: 5px solid limegreen;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    color: white;
+}
+
+
+h2 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #fff;
+    text-shadow: 1px 1px 4px black;
+}
