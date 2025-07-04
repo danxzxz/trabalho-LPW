@@ -13,13 +13,6 @@ if (!isset($_GET['id'])) {
 $idExcluir = $_GET['id'];
 
 $conn = Conexao::getConexao();
-
-$sqlExiste = "SELECT COUNT(*) FROM livros WHERE id = ?";
-$stmExiste = $conn->prepare($sqlExiste);
-$stmExiste->execute([$idExcluir]);
-$count = $stmExiste->fetchColumn();
-
-
 //exclusão no sql
 $sql = "DELETE FROM livros WHERE id = ?";
 $stm = $conn->prepare($sql);
