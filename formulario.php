@@ -31,15 +31,25 @@ if (isset($_POST['nome'], $_POST['autor'], $_POST['ano'], $_POST['genero'], $_PO
         $erros[] = "Os campos não podem conter apenas espaços em branco.";
     }
 
+    $conn = Conexao::getConexao();
+    $sql = "SELECT * FROM livros WHERE nome = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$nome]);
+    $livroExiste = $stmt->fetch();
+    
+    if ($livroExiste) {
+        $erros[] = "Este livro já foi cadastrado.";
+    }
+
     if (empty($erros)) {
         try {
             $conn = Conexao::getConexao();
-            $sql = "INSERT INTO livros (nome, autor, ano, genero, classificacao, sinopse, link, data_cadastro) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO livros (nome, autor, ano, genero, classificacao, sinopse, link) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?)";
             $data = date("Y");
 
             $stmt = $conn->prepare($sql);
-            $stmt->execute([$nome, $autor, $ano, $genero, $CI, $sinopse, $link, $data]);
+            $stmt->execute([$nome, $autor, $ano, $genero, $CI, $sinopse, $link]);
 
             $sucesso = true;
             $_POST = [];
@@ -88,12 +98,12 @@ try {
     <form method="POST">
         <input name="nome" placeholder="Título do Livro" value="<?= $_POST['nome'] ?? '' ?>" /><br>
         <input name="autor" placeholder="Autor" value="<?= $_POST['autor'] ?? '' ?>" /><br>
-        <input name="ano" placeholder="Ano de Publicação" value="<?= $_POST['ano'] ?? '' ?>" /><br>
+        <input type="number" name="ano" placeholder="Ano de Publicação" value="<?= $_POST['ano'] ?? '' ?>" /><br>
 
         <select name="genero" style="height: 35px; width: 270px; border-radius: 5px; ">
             <option value="" disabled selected hidden>Selecione o gênero</option>
             <?php
-            $generos = ["ficcao_cientifica", "fantasia", "romance", "suspense", "terror", "drama", "biografia", "historia", "autoajuda", "poesia", "infantil", "young_adult", "didatico", "outro"];
+            $generos = ["Ficçao cientifica", "Fantasia", "Romance", "Suspense", "Terror", "Drama", "Biografia", "Historia", "Autoajuda", "Poesia", "Infantil", "Didatico", "Outro"];
             foreach ($generos as $g) {
                 $selected = ($_POST['genero'] ?? '') === $g ? 'selected' : '';
                 echo "<option value=\"$g\" $selected>$g</option>";

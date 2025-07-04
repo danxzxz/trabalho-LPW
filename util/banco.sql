@@ -11,7 +11,6 @@ CREATE TABLE  livros (
     classificacao VARCHAR(50) NOT NULL,
     sinopse TEXT NOT NULL,
     link TEXT NOT NULL,
-    data_cadastro CHAR(4)
 );
 
 

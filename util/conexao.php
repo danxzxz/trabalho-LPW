@@ -15,7 +15,7 @@ class Conexao {
             );
 
             try {
-                self::$conn = new PDO("mysql:host=localhost:3306;dbname=biblioteca","root", "", $opcoes);
+                self::$conn = new PDO("mysql:host=localhost:3306;dbname=biblioteca","root", "bancodedados", $opcoes);
                 // echo "Conexão estabelecida com sucesso!"; // mensagem de sucesso
             } catch (PDOException $e) {
                 die("Erro de conexão: " . $e->getMessage());
