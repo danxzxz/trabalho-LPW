@@ -95,8 +95,8 @@ try {
         <input name="ano" placeholder="Ano de Publicação" value="<?= $_POST['ano'] ?? '' ?>" /><br>
 
         <!-- Gênero -->
-        <select name="genero" style="height: 35px; width: 270px; border-radius: 5px; color: gray;">
-            <option value="">Selecione o gênero</option>
+        <select name="genero" style="height: 35px; width: 270px; border-radius: 5px; ">
+            <option value="" disabled selected hidden>Selecione o gênero</option>
             <?php
             $generos = ["ficcao_cientifica", "fantasia", "romance", "suspense", "terror", "drama", "biografia", "historia", "autoajuda", "poesia", "infantil", "young_adult", "didatico", "outro"];
             foreach ($generos as $g) {
@@ -107,17 +107,17 @@ try {
         </select><br><br>
 
         <!-- Classificação -->
-        <select name="CI" style="height: 35px; width: 270px; border-radius: 5px; color: gray;">
-            <option value="">Selecione a classificação</option>
+        <select name="CI" style="height: 35px; width: 270px; border-radius: 5px; ">
+            <option value="" disabled selected hidden>Selecione a classificação</option>
             <?php
             $classificacoes = [
-                "livre" => "Livre",
-                "6_anos" => "A partir de 6 anos",
-                "10_anos" => "A partir de 10 anos",
-                "12_anos" => "A partir de 12 anos",
-                "14_anos" => "A partir de 14 anos",
-                "16_anos" => "A partir de 16 anos",
-                "adulto" => "Adulto (18+)"
+                "LIVRE" => "Livre",
+                "6 anos" => "A partir de 6 anos",
+                "10 anos" => "A partir de 10 anos",
+                "12 anos" => "A partir de 12 anos",
+                "14 anos" => "A partir de 14 anos",
+                "16 anos" => "A partir de 16 anos",
+                "Adulto" => "Adulto (18+)"
             ];
             foreach ($classificacoes as $valor => $label) {
                 $selected = ($_POST['CI'] ?? '') === $valor ? 'selected' : '';
