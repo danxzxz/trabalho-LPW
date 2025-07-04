@@ -46,7 +46,6 @@ if (isset($_POST['nome'], $_POST['autor'], $_POST['ano'], $_POST['genero'], $_PO
             $conn = Conexao::getConexao();
             $sql = "INSERT INTO livros (nome, autor, ano, genero, classificacao, sinopse, link) 
                     VALUES (?, ?, ?, ?, ?, ?, ?)";
-            $data = date("Y");
 
             $stmt = $conn->prepare($sql);
             $stmt->execute([$nome, $autor, $ano, $genero, $CI, $sinopse, $link]);

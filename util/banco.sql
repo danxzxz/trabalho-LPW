@@ -10,7 +10,7 @@ CREATE TABLE  livros (
     genero VARCHAR(50) NOT NULL,
     classificacao VARCHAR(50) NOT NULL,
     sinopse TEXT NOT NULL,
-    link TEXT NOT NULL,
+    link TEXT NOT NULL
 );
 
 
