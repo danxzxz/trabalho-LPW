@@ -13,9 +13,9 @@ body {
     font-family: Arial, sans-serif;
 
     display: flex;
-    flex-wrap: wrap;       /* permite quebrar para a próxima linha */
-    justify-content: center; /* centraliza os cards */
-    gap: 20px;             /* espaçamento entre cards */
+    flex-wrap: wrap;       
+    justify-content: center; 
+    gap: 20px;             
     padding: 20px;
     }
     .card {
@@ -27,8 +27,7 @@ body {
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-    /* remova a margem, use gap no container */
-    /* margin: 15px; */
+
     }
 
   .card:hover {
